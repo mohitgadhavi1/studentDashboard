@@ -1,7 +1,7 @@
 import React from "react";
 import "./AddStudent.css";
 
-function AddStudent() {
+function AddStudent(props) {
   return (
     <div className="form-wrapper">
       <h2>Add Student</h2>
@@ -26,7 +26,13 @@ function AddStudent() {
         <span>-</span>
       </div>
       <div>
-        <button>CANCEL</button>
+        <button
+          onClick={() => {
+            props.setOpenStudentForm(false);
+          }}
+        >
+          CANCEL
+        </button>
         <button>CONFIRM</button>
       </div>
     </div>
