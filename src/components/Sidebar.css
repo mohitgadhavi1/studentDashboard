@@ -1,0 +1,25 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+text-align: center;
+height: 100%;
+}
+.head{
+height: 20%;
+background-color: antiquewhite;
+}
+
+.list-items{
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    background-color: yellow;
+}
+.profile-link{
+   
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    background-color: antiquewhite;
+}
