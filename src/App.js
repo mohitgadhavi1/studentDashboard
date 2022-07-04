@@ -3,18 +3,20 @@ import "./App.css";
 import MainArea from "./components/MainArea";
 import Sidebar from "./components/Sidebar";
 import AddStudent from "./components/AddStudent";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [openStudentForm, setOpenStudentForm] = useState(false);
+  const isFormOpen = useSelector((state) => state.studentForm.value);
+  console.log(isFormOpen)
   return (
     <div className="grid-container">
       <div className="item1">
         <Sidebar />
       </div>
       <div className="item2">
-        <MainArea setOpenStudentForm={setOpenStudentForm} />
+        <MainArea />
       </div>
-      {openStudentForm && <AddStudent setOpenStudentForm={setOpenStudentForm}/>}
+      {isFormOpen && <AddStudent />}
     </div>
   );
 }
