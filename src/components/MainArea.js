@@ -1,24 +1,30 @@
 import React, { useState } from "react";
 import "./MainArea.css";
-import { studentData } from "../StudentData";
 import { useSelector, useDispatch } from "react-redux";
-import { addStudent, editStudent } from "../redux/studentFormSlice";
+import {
+  addStudent,
+  editStudent,
+  deleteStudent,
+} from "../redux/studentFormSlice";
 
 function MainArea() {
-  const [studentdata, setStudentData] = useState(studentData);
   const dispatch = useDispatch();
+  const studentData = useSelector((state) => state.studentForm.studentData);
   const onDeleteObject = (item) => {
-    let newstudentData = studentdata.filter((element) => {
-      return element.id !== item.id;
-    });
-    setStudentData([...newstudentData]);
+   
+    dispatch(deleteStudent(item));
   };
 
   return (
     <div className="mainArea">
       <div className="top">
         <h3>Students</h3>
-        <button className="add-btn" onClick={() => dispatch(addStudent())}>
+        <button
+          className="add-btn"
+          onClick={() => {
+            dispatch(addStudent());
+          }}
+        >
           +Add
         </button>
       </div>
@@ -36,7 +42,7 @@ function MainArea() {
             </tr>
           </thead>
           <tbody>
-            {studentdata.map((item) => {
+            {studentData.map((item) => {
               return (
                 <tr key={item.id}>
                   <td>{item.id}</td>
@@ -52,8 +58,16 @@ function MainArea() {
                     <td> Excellent </td>
                   )}
                   <td>
-                    <button onClick={() => {}}>Edit</button>
-                    <button onClick={() => {}}>Delete</button>
+                    <button onClick={() => dispatch(editStudent())}>
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => {
+                        return onDeleteObject(item);
+                      }}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
