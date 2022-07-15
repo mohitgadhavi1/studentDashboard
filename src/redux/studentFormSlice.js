@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 import { studentData } from "../StudentData";
 
 const initialState = {
@@ -10,8 +11,10 @@ export const studentForm = createSlice({
   name: "studentForm",
   initialState,
   reducers: {
-    addStudent: (state) => {
+    addStudent: (state, action) => {
+      const newStudent = action.payload;
       state.value = true;
+      console.log(console.log(newStudent));
     },
     editStudent: (state) => {
       state.value = true;

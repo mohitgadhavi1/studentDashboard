@@ -1,13 +1,19 @@
 import React from "react";
 import "./AddStudent.css";
 import { useDispatch } from "react-redux";
-import { cancelForm } from "../redux/studentFormSlice";
+import { cancelForm ,addStudent} from "../redux/studentFormSlice";
 
 function AddStudent() {
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target[0].value);
+    
+    var newStudent = {};
+    newStudent.name = e.target[0].value;
+    newStudent.class = e.target[1].value;
+    newStudent.score = e.target[2].value;
+    dispatch(addStudent(newStudent));
   };
   return (
     <div className="form-wrapper">
