@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./MainArea.css";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteStudent, openForm } from "../redux/studentFormSlice";
+import {
+  deleteStudent,
+  editStudent,
+  openForm,
+} from "../redux/studentFormSlice";
 
 function MainArea() {
   const dispatch = useDispatch();
@@ -50,7 +54,17 @@ function MainArea() {
                   <td>{item.grade}</td>
 
                   <td>
-                    <button onClick={() => dispatch(openForm())}>Edit</button>
+                    <button
+                      id={item.id}
+                      onClick={(e) => {
+                        return (
+                          dispatch(openForm()),
+                          dispatch(editStudent(e.target.id))
+                        );
+                      }}
+                    >
+                      Edit
+                    </button>
                     <button
                       onClick={() => {
                         return onDeleteObject(item);

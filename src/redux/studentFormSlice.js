@@ -3,8 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { studentData } from "../StudentData";
 
 const initialState = {
-  value: false,
+  isFormOpen: false,
   studentData: studentData,
+  editedStudent: {},
+
   result: studentData.forEach((item) => {
     if (item.score >= 30) {
       return (item.result = "Passed");
@@ -28,7 +30,7 @@ export const studentForm = createSlice({
   initialState,
   reducers: {
     openForm: (state) => {
-      state.value = true;
+      state.isFormOpen = true;
     },
     addStudent: (state, action) => {
       const newStudent = action.payload;
@@ -55,18 +57,23 @@ export const studentForm = createSlice({
       });
     },
     editStudent: (state, action) => {
-      const item = action.payload;
-      console.log(item);
+      const itemId = action.payload;
+      const modifyStudent = state.studentData.filter(
+        (student) => student.id === parseFloat(itemId)
+      );
+
+      state.editedStudent = modifyStudent[0];
+    
     },
     cancelForm: (state) => {
-      state.value = false;
+      state.isFormOpen = false;
     },
     deleteStudent: (state, action) => {
       const item = action.payload;
       const newStudentData = state.studentData.filter(
         (student) => student.id !== item.id
       );
-      // console.log(newStudentData);
+      console.log(newStudentData);
       state.studentData = newStudentData;
     },
   },

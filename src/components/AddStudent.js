@@ -6,6 +6,8 @@ import { cancelForm, addStudent, editStudent } from "../redux/studentFormSlice";
 function AddStudent() {
   const dispatch = useDispatch();
   const studentData = useSelector((state) => state.studentForm.studentData);
+  const editedStudent = useSelector((state) => state.studentForm.editedStudent);
+  console.log(editedStudent);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,22 +25,22 @@ function AddStudent() {
       <form className="student-form" onSubmit={handleSubmit}>
         <label htmlFor="">
           STUDENT NAME
-          <input type="text" name="name" />
+          <input type="text" name="name" value={editedStudent.name} />
         </label>
         <label htmlFor="">
           CLASS
-          <input type="number" name="class" />
+          <input type="number" name="class" value={editedStudent.class} />
         </label>
         <label htmlFor="">
           SCORE
-          <input type="number" name="score" value="0" />
+          <input type="number" name="score" value={editedStudent.score} />
         </label>
 
         <div>
-          <p>RESULT</p>
-          <span>-</span>
-          <p>GRADE</p>
-          <span>-</span>
+          <p>Result:</p>
+          <span>{editedStudent.result}</span>
+          <p>Grade:</p>
+          <span>{editedStudent.grade}</span>
         </div>
         <div>
           <button

@@ -6,7 +6,7 @@ import AddStudent from "./components/AddStudent";
 import { useSelector } from "react-redux";
 
 function App() {
-  const isFormOpen = useSelector((state) => state.studentForm.value);
+  const isFormOpen = useSelector((state) => state.studentForm.isFormOpen);
 
   return (
     <div className="grid-container">
