@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import "./MainArea.css";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addStudent,
-  editStudent,
-  deleteStudent,
-} from "../redux/studentFormSlice";
+import { deleteStudent, openForm } from "../redux/studentFormSlice";
 
 function MainArea() {
   const dispatch = useDispatch();
   const studentData = useSelector((state) => state.studentForm.studentData);
+
   const onDeleteObject = (item) => {
-   
     dispatch(deleteStudent(item));
   };
 
@@ -22,7 +18,7 @@ function MainArea() {
         <button
           className="add-btn"
           onClick={() => {
-            dispatch(addStudent());
+            return dispatch(openForm());
           }}
         >
           +Add
@@ -48,19 +44,13 @@ function MainArea() {
                   <td>{item.id}</td>
                   <td>{item.name}</td>
                   <td>{item.class}th</td>
-                  {item.score >= 30 ? <td> Passed </td> : <td>Failed</td>}
+
+                  <td>{item.result}</td>
                   <td>{item.score}/100</td>
-                  {item.score <= 30 ? (
-                    <td> Poor </td>
-                  ) : item.score > 30 && item.score <= 75 ? (
-                    <td> Average </td>
-                  ) : (
-                    <td> Excellent </td>
-                  )}
+                  <td>{item.grade}</td>
+
                   <td>
-                    <button onClick={() => dispatch(editStudent())}>
-                      Edit
-                    </button>
+                    <button onClick={() => dispatch(openForm())}>Edit</button>
                     <button
                       onClick={() => {
                         return onDeleteObject(item);

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   const isFormOpen = useSelector((state) => state.studentForm.value);
-  console.log(isFormOpen)
+
   return (
     <div className="grid-container">
       <div className="item1">

@@ -1,15 +1,17 @@
 import React from "react";
 import "./AddStudent.css";
-import { useDispatch } from "react-redux";
-import { cancelForm ,addStudent} from "../redux/studentFormSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { cancelForm, addStudent, editStudent } from "../redux/studentFormSlice";
 
 function AddStudent() {
   const dispatch = useDispatch();
+  const studentData = useSelector((state) => state.studentForm.studentData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    var newStudent = {};
+
+    let newStudent = {};
+    newStudent.id = studentData.length + 1;
     newStudent.name = e.target[0].value;
     newStudent.class = e.target[1].value;
     newStudent.score = e.target[2].value;
@@ -29,7 +31,7 @@ function AddStudent() {
         </label>
         <label htmlFor="">
           SCORE
-          <input type="number" name="score" />
+          <input type="number" name="score" value="0" />
         </label>
 
         <div>
