@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./studentForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelForm, addStudent, editStudent } from "../redux/studentFormSlice";
@@ -22,9 +22,11 @@ function StudentForm() {
 
     let newStudent = {};
     newStudent.id = studentData.length + 1;
-    newStudent.name = e.target[0].value;
-    newStudent.class = e.target[1].value;
-    newStudent.score = e.target[2].value;
+    newStudent.name = value.name;
+    newStudent.class = value.class;
+    newStudent.score = value.score;
+    newStudent.result = value.result;
+    newStudent.grade = value.grade;
     dispatch(addStudent(newStudent));
   };
   console.log(value);
@@ -71,6 +73,13 @@ function StudentForm() {
               setValue((value) => ({
                 ...value,
                 score: e.target.value,
+                result: e.target.value >= 30 ? "passed" : "failed",
+                grade:
+                  e.target.value <= 30
+                    ? " Poor"
+                    : e.target.value > 30 && e.target.value <= 75
+                    ? "Average"
+                    : "Excellent ",
               }));
             }}
           />
@@ -78,9 +87,9 @@ function StudentForm() {
 
         <div>
           <p>Result:</p>
-          <span>{editedStudent ? editedStudent.result : ""}</span>
+          <span>{editedStudent ? editedStudent.result : value.result}</span>
           <p>Grade:</p>
-          <span>{editedStudent ? editedStudent.grade : ""}</span>
+          <span>{editedStudent ? editedStudent.grade : value.grade}</span>
         </div>
         <div>
           <button

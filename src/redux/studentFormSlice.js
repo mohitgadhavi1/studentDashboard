@@ -45,22 +45,6 @@ export const studentForm = createSlice({
 
       console.log(newStudent);
       state.studentData = newStudentData;
-      state.result = state.studentData.forEach((item) => {
-        if (item.score >= 30) {
-          return (item.result = "Passed");
-        } else {
-          return (item.result = "Failed");
-        }
-      });
-      state.grade = state.studentData.forEach((item) => {
-        if (item.score <= 30) {
-          return (item.grade = " Poor");
-        } else if (item.score > 30 && item.score <= 75) {
-          return (item.grade = "Average");
-        } else {
-          return (item.grade = "Excellent ");
-        }
-      });
     },
     editStudent: (state, action) => {
       const itemId = action.payload;
