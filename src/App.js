@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import MainArea from "./components/MainArea";
 import Sidebar from "./components/Sidebar";
-import AddStudent from "./components/AddStudent";
+import StudentForm from "./components/StudentForm";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
       <div className="item2">
         <MainArea />
       </div>
-      {isFormOpen && <AddStudent />}
+
+      {isFormOpen && <StudentForm />}
     </div>
   );
 }

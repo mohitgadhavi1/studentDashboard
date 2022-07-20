@@ -5,7 +5,7 @@ import { studentData } from "../StudentData";
 const initialState = {
   isFormOpen: false,
   studentData: studentData,
-  editedStudent: {},
+  editedStudent: null,
 
   result: studentData.forEach((item) => {
     if (item.score >= 30) {
@@ -29,10 +29,16 @@ export const studentForm = createSlice({
   name: "studentForm",
   initialState,
   reducers: {
-    openForm: (state) => {
+    openForm: (state, action) => {
+      const item = action.payload;
+      if (item == "add-btn") {
+        state.editedStudent = null;
+      }
+      console.log(item);
       state.isFormOpen = true;
     },
     addStudent: (state, action) => {
+      state.isFormOpen = true;
       const newStudent = action.payload;
 
       const newStudentData = [...state.studentData, newStudent];
@@ -63,7 +69,6 @@ export const studentForm = createSlice({
       );
 
       state.editedStudent = modifyStudent[0];
-    
     },
     cancelForm: (state) => {
       state.isFormOpen = false;
@@ -73,6 +78,9 @@ export const studentForm = createSlice({
       const newStudentData = state.studentData.filter(
         (student) => student.id !== item.id
       );
+      newStudentData.forEach((item, index) => {
+        item.id = index + 1;
+      });
       console.log(newStudentData);
       state.studentData = newStudentData;
     },

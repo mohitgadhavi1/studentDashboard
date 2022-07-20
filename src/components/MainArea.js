@@ -21,8 +21,8 @@ function MainArea() {
         <h3>Students</h3>
         <button
           className="add-btn"
-          onClick={() => {
-            return dispatch(openForm());
+          onClick={(e) => {
+            return dispatch(openForm(e.target.className));
           }}
         >
           +Add
