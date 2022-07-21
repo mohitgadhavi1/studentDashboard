@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import "./MainArea.css";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  deleteStudent,
-  editStudent,
-  openForm,
-} from "../redux/studentFormSlice";
+import { deleteStudent, openForm } from "../redux/studentFormSlice";
 
 function MainArea() {
   const dispatch = useDispatch();
@@ -57,10 +53,7 @@ function MainArea() {
                     <button
                       id={item.id}
                       onClick={(e) => {
-                        return (
-                          dispatch(openForm()),
-                          dispatch(editStudent(e.target.id))
-                        );
+                        return dispatch(openForm(e.target.id));
                       }}
                     >
                       Edit
@@ -79,7 +72,10 @@ function MainArea() {
           </tbody>
         </table>
       </div>
-      <div className="bottom-comment"> showing 7 of 7 entries</div>
+      <div className="bottom-comment">
+        {" "}
+        showing {studentData.length} of {studentData.length} entries
+      </div>
     </div>
   );
 }

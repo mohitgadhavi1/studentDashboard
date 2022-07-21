@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./studentForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { cancelForm, addStudent, editStudent } from "../redux/studentFormSlice";
+import {
+  cancelForm,
+  addStudent,
+  editStudent,
+  openForm,
+} from "../redux/studentFormSlice";
 
 function StudentForm() {
   const [value, setValue] = useState({
@@ -12,24 +17,35 @@ function StudentForm() {
     result: "",
     grade: "",
   });
+
   const dispatch = useDispatch();
   const studentData = useSelector((state) => state.studentForm.studentData);
   const editedStudent = useSelector((state) => state.studentForm.editedStudent);
-  console.log(editedStudent);
+  // console.log(editedStudent);
+
+  useEffect(() => {
+    if (editedStudent) {
+      setValue({ ...editedStudent });
+    }
+  }, [editedStudent]);
+  // console.log(value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let newStudent = {};
-    newStudent.id = studentData.length + 1;
+
+    newStudent.id = editedStudent ? value.id : studentData.length + 1;
     newStudent.name = value.name;
     newStudent.class = value.class;
     newStudent.score = value.score;
     newStudent.result = value.result;
     newStudent.grade = value.grade;
-    dispatch(addStudent(newStudent));
+
+    console.log(newStudent);
+    dispatch(editedStudent ? editStudent(newStudent) : addStudent(newStudent));
+    dispatch(cancelForm());
   };
-  console.log(value);
 
   return (
     <div className="form-wrapper">
@@ -40,7 +56,7 @@ function StudentForm() {
           <input
             type="text"
             name="name"
-            value={editedStudent ? editedStudent.name : value.name}
+            value={value.name}
             onChange={(e) => {
               setValue((value) => ({
                 ...value,
@@ -54,7 +70,7 @@ function StudentForm() {
           <input
             type="number"
             name="class"
-            value={editedStudent ? editedStudent.class : value.class}
+            value={value.class}
             onChange={(e) => {
               setValue((value) => ({
                 ...value,
@@ -68,7 +84,7 @@ function StudentForm() {
           <input
             type="number"
             name="score"
-            value={editedStudent ? editedStudent.score : value.score}
+            value={value.score}
             onChange={(e) => {
               setValue((value) => ({
                 ...value,
@@ -87,9 +103,9 @@ function StudentForm() {
 
         <div>
           <p>Result:</p>
-          <span>{editedStudent ? editedStudent.result : value.result}</span>
+          <span>{value.result}</span>
           <p>Grade:</p>
-          <span>{editedStudent ? editedStudent.grade : value.grade}</span>
+          <span>{value.grade}</span>
         </div>
         <div>
           <button

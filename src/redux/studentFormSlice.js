@@ -31,14 +31,19 @@ export const studentForm = createSlice({
   reducers: {
     openForm: (state, action) => {
       const item = action.payload;
-      if (item == "add-btn") {
+      if (item === "add-btn") {
         state.editedStudent = null;
+      } else {
+        const modifyStudent = state.studentData.filter(
+          (student) => student.id === parseFloat(item)
+        );
+
+        state.editedStudent = modifyStudent[0];
       }
-      console.log(item);
+
       state.isFormOpen = true;
     },
     addStudent: (state, action) => {
-      state.isFormOpen = true;
       const newStudent = action.payload;
 
       const newStudentData = [...state.studentData, newStudent];
@@ -47,12 +52,18 @@ export const studentForm = createSlice({
       state.studentData = newStudentData;
     },
     editStudent: (state, action) => {
-      const itemId = action.payload;
-      const modifyStudent = state.studentData.filter(
-        (student) => student.id === parseFloat(itemId)
-      );
+      const editStudent = action.payload;
+      console.log(editStudent);
+      const newStudentData = [];
+      state.studentData.map((item) => {
+        if (item.id == editStudent.id) {
+          newStudentData.push(editStudent);
+        } else {
+          newStudentData.push(item);
+        }
+      });
 
-      state.editedStudent = modifyStudent[0];
+      state.studentData = newStudentData;
     },
     cancelForm: (state) => {
       state.isFormOpen = false;
