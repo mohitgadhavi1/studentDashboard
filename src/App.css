@@ -1,12 +1,14 @@
 .item1 { grid-area: sidebar; 
-background-color: aliceblue;
+background-color:  #F9FCFE;
+
+;
 
 }
 .item2 { grid-area: mainArea; }
 .grid-container{
     display: grid;
     grid-template-areas:
-    'sidebar mainArea mainArea mainArea mainArea mainArea';
+    'sidebar mainArea mainArea mainArea mainArea mainArea mainArea mainArea mainArea mainArea';
     min-height: 100vh;
    
 }
