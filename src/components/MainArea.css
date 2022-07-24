@@ -35,6 +35,17 @@ text-align: center;
 letter-spacing: 1.25px;
 text-transform: uppercase;
 }
+.top button svg{
+  width: 12px;
+height: 12px;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 0;
+flex-grow: 0;
+}
 .top h3{
   font-family: 'Montserrat';
 font-style: normal;
@@ -50,12 +61,15 @@ color: #242424;
 .table {
     display: flex;
     flex-direction: column;
-    height: 76%;
+    height: 72%;
  
     margin: 0 2% 0 2%;
-    background: #FFFFFF;
+  
     border: 1px solid #E2E5EB;
+    
 border-radius: 10px;
+
+overflow: scroll;
 }
 
 
@@ -65,47 +79,57 @@ border-radius: 10px;
    
     
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 0 2% 0 2%;
     height: 6%;
-    background-color: white;
+  
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 16px;
+/* identical to box height, or 133% */
+
+
+color: #242424;
 }
 
 #customers {
+ 
+
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
-  
-    
+ 
 
   }
   
   #customers td, #customers th {
-  
-    padding: 8px;
+
+    padding: 5px;
     
   }
   #customers td{
+   
     font-family: 'Montserrat';
 font-style: normal;
 font-weight: 400;
 font-size: 14px;
 line-height: 18px;
-/* identical to box height, or 129% */
-
-
 color: #242424;
+
   }
+ 
+  #customers tbody tr:hover {background-color: #ddd;}
   
+  #customers  th{
 
   
-  #customers tr:hover {background-color: #ddd;}
-  
-  #customers th {
-    color: #242424;
+    background-color: #F1F4F8;
   }
-  #customers thead{
-
-    
-    background: #F1F4F8;
-    border-radius: 10px 10px 0px 0px;
+  #customers  th:first-child {
+    border-radius: 10px 0px 0px 0px;
+  }
+  #customers  th:last-child {
+    border-radius: 0px 10px 0px 0px;
   }

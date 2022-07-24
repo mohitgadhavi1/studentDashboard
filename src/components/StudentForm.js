@@ -49,10 +49,10 @@ function StudentForm() {
 
   return (
     <div className="form-wrapper">
-      <h2>Add Student</h2>
+      <h2>ADD STUDENT</h2>
       <form className="student-form" onSubmit={handleSubmit}>
         <label htmlFor="">
-          STUDENT NAME
+          Student name*
           <input
             type="text"
             name="name"
@@ -66,7 +66,7 @@ function StudentForm() {
           />
         </label>
         <label htmlFor="">
-          CLASS
+          CLASS*
           <input
             type="number"
             name="class"
@@ -78,9 +78,10 @@ function StudentForm() {
               }));
             }}
           />
+          Please input values between 1 & 12
         </label>
         <label htmlFor="">
-          SCORE
+          SCORE*
           <input
             type="number"
             name="score"
@@ -99,23 +100,27 @@ function StudentForm() {
               }));
             }}
           />
+ Please input values between 0 & 100
         </label>
 
         <div>
           <p>Result:</p>
-          <span>{value.result}</span>
+          <span>{value.result || "-"}</span>
           <p>Grade:</p>
-          <span>{value.grade}</span>
+          <span>{value.grade || "-"}</span>
         </div>
-        <div>
+        <div className="form-btn">
           <button
+            className="cancel"
             onClick={() => {
               return dispatch(cancelForm());
             }}
           >
             CANCEL
           </button>
-          <button type="submit">CONFIRM</button>
+          <button type="submit" className="confirm">
+            CONFIRM
+          </button>
         </div>
       </form>
     </div>
