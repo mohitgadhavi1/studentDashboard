@@ -52,7 +52,7 @@ function StudentForm() {
       <h2>ADD STUDENT</h2>
       <form className="student-form" onSubmit={handleSubmit}>
         <label htmlFor="">
-          Student name*
+          STUDENT NAME*
           <input
             type="text"
             name="name"
@@ -90,24 +90,42 @@ function StudentForm() {
               setValue((value) => ({
                 ...value,
                 score: e.target.value,
-                result: e.target.value >= 30 ? "passed" : "failed",
+                result: e.target.value >= 30 ? "Passed" : "Failed",
                 grade:
                   e.target.value <= 30
-                    ? " Poor"
+                    ? "Poor"
                     : e.target.value > 30 && e.target.value <= 75
                     ? "Average"
                     : "Excellent ",
               }));
             }}
           />
- Please input values between 0 & 100
+          Please input values between 0 & 100
         </label>
 
-        <div>
-          <p>Result:</p>
-          <span>{value.result || "-"}</span>
-          <p>Grade:</p>
-          <span>{value.grade || "-"}</span>
+        <div className="result-wrapper">
+          <p>RESULT:</p>
+          <span
+            className={
+              value.result == "Passed"
+                ? "greenSpan"
+                : value.result == "Failed"
+                ? "redSpan"
+                : ""
+            }
+          >
+            {value.result || "-"}
+          </span>
+          <p>GRADE:</p>
+          <span
+            style={
+              value.grade == "Poor"
+                ? { color: "#F24643" }
+                : { color: "#2CBF6E" }
+            }
+          >
+            {value.grade || "-"}
+          </span>
         </div>
         <div className="form-btn">
           <button

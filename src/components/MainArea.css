@@ -68,14 +68,55 @@ color: #242424;
     border: 1px solid #E2E5EB;
     
 border-radius: 10px;
+overflow-y: scroll;
 
-overflow: scroll;
 }
 
 
 
 
-.bottom-comment{
+
+#customers {
+ 
+  
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+  
+   
+  }
+  
+  #customers td, #customers th {
+
+    padding: 5px;
+    
+  }
+  #customers td{
+   
+    font-family: 'Montserrat';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 18px;
+color: #242424;
+
+
+  }
+
+  #customers tbody tr:hover {background-color: #ddd;}
+  
+  #customers  th{
+
+   
+    background-color: #F1F4F8;
+  }
+  #customers  th:first-child {
+    border-radius: 10px 0px 0px 0px;
+  }
+  #customers  th:last-child {
+    border-radius: 0px 10px 0px 0px;
+  }
+
+  .bottom-comment{
    
     
     display: flex;
@@ -94,42 +135,7 @@ line-height: 16px;
 
 color: #242424;
 }
-
-#customers {
+.modify-btn{
+ width: 15%;
  
-
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
- 
-
-  }
-  
-  #customers td, #customers th {
-
-    padding: 5px;
-    
-  }
-  #customers td{
-   
-    font-family: 'Montserrat';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 18px;
-color: #242424;
-
-  }
- 
-  #customers tbody tr:hover {background-color: #ddd;}
-  
-  #customers  th{
-
-  
-    background-color: #F1F4F8;
-  }
-  #customers  th:first-child {
-    border-radius: 10px 0px 0px 0px;
-  }
-  #customers  th:last-child {
-    border-radius: 0px 10px 0px 0px;
-  }
+}

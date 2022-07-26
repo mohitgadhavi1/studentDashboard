@@ -16,7 +16,7 @@ const initialState = {
   }),
   grade: studentData.forEach((item) => {
     if (item.score <= 30) {
-      return (item.grade = " Poor");
+      return (item.grade = "Poor");
     } else if (item.score > 30 && item.score <= 75) {
       return (item.grade = "Average");
     } else {
