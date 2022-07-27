@@ -46,7 +46,7 @@ function StudentForm() {
     dispatch(editedStudent ? editStudent(newStudent) : addStudent(newStudent));
     dispatch(cancelForm());
   };
-
+  const scoreCheck = Math.max(0, Math.min(100, Number(value.score)));
   return (
     <div className="form-wrapper">
       <h2>ADD STUDENT</h2>
@@ -74,7 +74,7 @@ function StudentForm() {
             onChange={(e) => {
               setValue((value) => ({
                 ...value,
-                class: e.target.value,
+                class: Math.max(1, Math.min(12, Number(e.target.value))),
               }));
             }}
           />
@@ -136,7 +136,20 @@ function StudentForm() {
           >
             CANCEL
           </button>
-          <button type="submit" className="confirm">
+          <button
+            disabled={
+              value.score < 0 ||
+              value.score > 100 ||
+              value.score == "" ||
+              value.class < 1 ||
+              value.class > 12 ||
+              value.name.length < 1
+                ? true
+                : false
+            }
+            type="submit"
+            className="confirm"
+          >
             CONFIRM
           </button>
         </div>

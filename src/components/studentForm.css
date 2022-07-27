@@ -105,6 +105,10 @@ flex: none;
 order: 0;
 flex-grow: 0;
 }
+.confirm:disabled,
+.confirm[disabled]{
+    background: #A8B4B9;
+}
 .cancel{
     display: flex;
 flex-direction: row;
